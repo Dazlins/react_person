@@ -1,5 +1,9 @@
 export const Person = ({ person }) => {
   const { name, age, sex, isMarried, partnerName } = person;
+  const partnerRelation = sex === 'f' ? 'husband' : 'wife';
+  const marriedMessage = isMarried
+    ? `${partnerName} is my ${partnerRelation}`
+    : 'I am not married';
 
   return (
     <section className="Person">
@@ -7,11 +11,7 @@ export const Person = ({ person }) => {
 
       {age && <p className="Person__age">{`I am ${age}`}</p>}
 
-      <p className="Person__partner">
-        {isMarried
-          ? `${partnerName} is my ${sex === 'f' ? 'husband' : 'wife'}`
-          : 'I am not married'}
-      </p>
+      <p className="Person__partner">{marriedMessage}</p>
     </section>
   );
 };
